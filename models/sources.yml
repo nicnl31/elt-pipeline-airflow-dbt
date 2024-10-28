@@ -1,0 +1,12 @@
+sources:
+  - name: raw
+    description: Raw data from CSV files
+    database: postgres
+    schema: bronze
+
+    tables:
+      - name: raw_listing
+      - name: raw_2016census_g01_nsw_lga
+      - name: raw_2016census_g02_nsw_lga
+      - name: raw_nsw_lga_code
+      - name: raw_nsw_lga_suburb
