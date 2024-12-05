@@ -10,9 +10,11 @@ area (LGA) level, and financing health.
 
 To this end, listings and census data are extracted from source systems, and the extraction process assumes a monthly schedule in order to implement **Type-2 Slowly Changing Dimensions (SCD-2)** as new data arrives.
 
-## How to use this repository
+## Repository information
 
 This repository is structured into the following modules:
+- `data`: contains the data used in this project. All data is publicly available,
+and URLs to access them are available in the `The data` section of this `README`.
 - `models`: where the data models live. This directory is further sub-structured into
 `bronze`, `silver`, and `gold` layers, representing the Medallion architecture
 - `snapshots`: stores the snapshot models that captures changes in dimensions.
@@ -32,11 +34,32 @@ The tree structure of the repository is in the following:
 
 ```
 .
+├── LICENSE
 ├── README.md
 ├── analysis
 │   └── adhoc_analysis.sql
 ├── dag
 │   └── dag.py
+├── data
+│   ├── Census LGA
+│   │   ├── 2016Census_G01_NSW_LGA.csv
+│   │   └── 2016Census_G02_NSW_LGA.csv
+│   ├── NSW_LGA
+│   │   ├── NSW_LGA_CODE.csv
+│   │   └── NSW_LGA_SUBURB.csv
+│   └── listings
+│       ├── 01_2021.csv
+│       ├── 02_2021.csv
+│       ├── 03_2021.csv
+│       ├── 04_2021.csv
+│       ├── 05_2020.csv
+│       ├── 06_2020.csv
+│       ├── 07_2020.csv
+│       ├── 08_2020.csv
+│       ├── 09_2020.csv
+│       ├── 10_2020.csv
+│       ├── 11_2020.csv
+│       └── 12_2020.csv
 ├── dbt_project.yml
 ├── landing
 │   └── landing.sql
