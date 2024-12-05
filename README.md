@@ -12,11 +12,34 @@ To this end, listings and census data are extracted from source systems, and the
 
 ## How to use this repository
 
-The repository's structure is as follows:
+This repository is structured into the following modules:
+- `models`: where the data models live. This directory is further sub-structured into
+`bronze`, `silver`, and `gold` layers, representing the Medallion architecture
+- `snapshots`: stores the snapshot models that captures changes in dimensions.
+This follows a **Type-2 Slowly Changing Dimensions** framework, where records
+are marked with `valid_from` and `valid_to` timestamps
+- `landing`: contains a SQL script to create the landing schema for all data. 
+This script is executed before the main pipeline is executed, in order to 
+create the baseline into which all data will land
+- `macros`: contains a SQL script to change the default name of the *dbt* tables
+into a more structured naming convention
+- `dag`: stores the Directed Acyclic Graph script written in Python, using 
+Airflow as the underlying engine. This script will orchestrate the whole 
+data pipeline upon completion of the data models
+- `report`: stores the final report of the project 
+
+The tree structure of the repository is in the following:
+
 ```
 .
 ├── README.md
+├── analysis
+│   └── adhoc_analysis.sql
+├── dag
+│   └── dag.py
 ├── dbt_project.yml
+├── landing
+│   └── landing.sql
 ├── macros
 │   └── generate_schema_name.sql
 ├── models
@@ -103,3 +126,5 @@ of the correct data types.
     - **Mart**: various aggregations for different business functions, 
     materialised as views
 
+## License
+This work is protected by the MIT License. See `LICENSE` for more information.
